@@ -21,8 +21,8 @@ startup_32:
 	mov %ax,%fs
 	mov %ax,%gs
 	lss _stack_start,%esp
-	call setup_idt
-	call setup_gdt
+	call setup_idt ;设置中断描述符表
+	call setup_gdt;shezhi 全局描述符表
 	movl $0x10,%eax		; reload all the segment registers
 	mov %ax,%ds		; after changing gdt. CS was already
 	mov %ax,%es		; reloaded in 'setup_gdt'
