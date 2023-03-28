@@ -135,9 +135,11 @@ void start(void)		/* This really IS void, no error here. */
 	floppy_init();
 	sti();
 	move_to_user_mode();
-	if (!fork()) {		/* we count on this going ok */
+	if (!fork()) {		/* we count on this going ok  宏定义*/ 
 		init();
 	}
+
+
 /*
  *   NOTE!!   For any other task 'pause()' would mean we have to get a
  * signal to awaken, but task0 is the sole exception (see 'schedule()')
@@ -147,7 +149,20 @@ void start(void)		/* This really IS void, no error here. */
  */
 	for(;;) pause();
 }
-
+/*
+int fork(void) {
+	 volatile long __res;
+	_asm {
+		_asm mov eax,__NR_fork
+		_asm int 80h
+		_asm mov __res,eax
+	}
+	if (__res >= 0)
+		return (void) __res;
+	errno = -__res;
+	return -1;
+}
+*/
 static int printf(const char *fmt, ...)
 {
 	va_list args;

@@ -34,7 +34,7 @@ static void init(int port)
 	(void)inb(port);	/* read data port to reset things (?) */
 }
 
-void rs_init(void)
+void rs_init(void) // 串口中断的开启
 {
 	set_intr_gate(0x24,rs1_interrupt);
 	set_intr_gate(0x23,rs2_interrupt);

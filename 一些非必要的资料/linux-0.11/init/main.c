@@ -125,16 +125,16 @@ void main(void)		/* This really IS void, no error here. */
 #endif
 	mem_init(main_memory_start,memory_end);//内存初始化
 	trap_init();//硬件中断初始化
-	blk_dev_init();//硬盘扇区初始化
+	blk_dev_init();//块硬盘扇区初始化
 	chr_dev_init();//目录初始化
-	tty_init();
-	time_init();
-	sched_init();
-	buffer_init(buffer_memory_end);
-	hd_init();
-	floppy_init();
-	sti();
-	move_to_user_mode();
+	tty_init(); //控制台初始化终端
+	time_init();//时间 初始化
+	sched_init();//进程调度初始化
+	buffer_init(buffer_memory_end); // 缓冲区初始化   buffer_memory_end 2M的一个buff分区
+	hd_init();//硬盘初始化
+	floppy_init();//软盘初始化 废弃 不理会
+	sti();		  // 打开中断 在这之前的所有设置的都断都不会生效
+	move_to_user_mode();//同时转为用户态
 	if (!fork()) {		/* we count on this going ok */
 		init();
 	}
