@@ -61,6 +61,7 @@ int sys_read(unsigned int fd,char * buf,int count)
 		return -EINVAL;
 	if (!count)
 		return 0;
+	//寻找inode节点数据
 	verify_area(buf,count);
 	inode = file->f_inode;
 	if (inode->i_pipe)

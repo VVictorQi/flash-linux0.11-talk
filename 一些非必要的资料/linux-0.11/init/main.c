@@ -124,9 +124,9 @@ void main(void)		/* This really IS void, no error here. */
 	main_memory_start += rd_init(main_memory_start, RAMDISK*1024);
 #endif
 	mem_init(main_memory_start,memory_end);//内存初始化
-	trap_init();
-	blk_dev_init();
-	chr_dev_init();
+	trap_init();//硬件中断初始化
+	blk_dev_init();//硬盘扇区初始化
+	chr_dev_init();//目录初始化
 	tty_init();
 	time_init();
 	sched_init();
