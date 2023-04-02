@@ -235,7 +235,7 @@ sectors:
 
 msg1:
 	db 13,10
-	db "dibingfa quick run"
+	db "victorqi quick run"
 	db 13,10,13,10
 
 times 	508-($-$$)	db	0	

@@ -128,12 +128,12 @@ lib/lib.a:$(LIB_SRC)
 	(cd lib & make)
 
 boot/setup.bin: boot/setup.asm 
-	$(AS86) -I"$(INC)"\ -o boot/setup.bin boot/setup.asm
+	$(AS86) -Iboot/ -o boot/setup.bin boot/setup.asm
 	 $(DASM) -b 16 boot/setup.bin >boot/setup.disasm
 #	$(LD86) -s -o boot/setup boot/setup.o
  
 boot/bootsect.bin:	boot/bootsect.asm 
-	$(AS86) -I"$(INC)"\ -o boot/bootsect.bin boot/bootsect.asm
+	$(AS86) -Iboot/ -o boot/bootsect.bin boot/bootsect.asm
 	$(DASM) -b 16 boot/bootsect.bin >boot/bootsect.disasm
 #	$(LD86) -s -o boot/bootsect boot/bootsect.o
 
