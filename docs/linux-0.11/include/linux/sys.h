@@ -1,3 +1,4 @@
+//系统调用注册
 extern int sys_setup();
 extern int sys_exit();
 extern int sys_fork();

@@ -243,7 +243,7 @@ sectors:
 
 msg1:
 	.byte 13,10
-	.ascii "Loading system ..."
+	.ascii "quick start ..."
 	.byte 13,10,13,10
 
 .org 508
