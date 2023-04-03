@@ -82,7 +82,7 @@ int copy_process(int nr,long ebp,long edi,long esi,long gs,long none,
 	p->state = TASK_UNINTERRUPTIBLE;
 	p->pid = last_pid;
 	p->father = current->pid;
-	p->counter = p->priority;
+	p->counter = p->priority;//在这里进行了一次赋值
 	p->signal = 0;
 	p->alarm = 0;
 	p->leader = 0;		/* process leadership doesn't inherit */

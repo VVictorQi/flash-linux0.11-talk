@@ -154,7 +154,7 @@ int sys_setup(void * BIOS)
 	if (NR_HD)
 		printk("Partition table%s ok.\n\r",(NR_HD>1)?"s":"");
 	rd_load();
-	mount_root();
+	mount_root(); //挂载root
 	return (0);
 }
 
@@ -344,6 +344,6 @@ void hd_init(void)
 {
 	blk_dev[MAJOR_NR].request_fn = DEVICE_REQUEST;
 	set_intr_gate(0x2E,&hd_interrupt);
-	outb_p(inb_p(0x21)&0xfb,0x21);
-	outb(inb_p(0xA1)&0xbf,0xA1);
+	outb_p(inb_p(0x21)&0xfb,0x21);  //读
+	outb(inb_p(0xA1)&0xbf,0xA1);//读 通过硬件串口
 }

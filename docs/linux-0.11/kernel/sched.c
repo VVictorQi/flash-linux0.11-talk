@@ -142,6 +142,10 @@ void schedule(void)
 	switch_to(next);
 }
 
+/*由上面的程序可以看出，0.11 的调度算法是选取 `counter` 值最大的就绪进程进行调度。
+当没有 counter 值大于 0 的就绪进程时，要对所有的进程做 `(*p)->counter = ((*p)->counter >> 1) + (*p)->priority`。
+其效果是对所有的进程（**包括阻塞态进程**）都进行 counter 的衰减，并再累加 priority 值。这样，对正被阻塞的进程来说，其此时的counter不为0，那么计算后得到的counter大于就绪态进程。
+于是可知，**一个进程在阻塞队列中停留的时间越长，其优先级越大，被分配的时间片也就会越大**。*/
 int sys_pause(void)
 {
 	current->state = TASK_INTERRUPTIBLE;

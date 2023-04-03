@@ -131,7 +131,7 @@ pg3:
  */
 _tmp_floppy_area:
 	.fill 1024,1,0
-
+/*在这里就是跳转main函数的地方*/
 after_page_tables:
 	pushl $0		# These are the parameters to main :-)
 	pushl $0

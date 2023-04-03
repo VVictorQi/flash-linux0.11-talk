@@ -126,14 +126,14 @@ void main(void)		/* This really IS void, no error here. */
 	mem_init(main_memory_start,memory_end);//内存初始化
 	trap_init();//硬件中断初始化
 	blk_dev_init();//块硬盘扇区初始化
-	chr_dev_init();//目录初始化
+	chr_dev_init();//目录初始化 什么都没做
 	tty_init(); //控制台初始化终端
 	time_init();//时间 初始化
 	sched_init();//进程调度初始化
 	buffer_init(buffer_memory_end); // 缓冲区初始化   buffer_memory_end 2M的一个buff分区
 	hd_init();//硬盘初始化
 	floppy_init();//软盘初始化 废弃 不理会
-	sti();		  // 打开中断 在这之前的所有设置的都断都不会生效
+	sti();		  // 打开中断 在这之前的所有设置的中断都不会生效
 	move_to_user_mode();//同时转为用户态
 	if (!fork()) {		/* we count on this going ok */
 		init();
@@ -164,13 +164,13 @@ static char * envp_rc[] = { "HOME=/", NULL };
 
 static char * argv[] = { "-/bin/sh",NULL };
 static char * envp[] = { "HOME=/usr/root", NULL };
-
+//初始化0-1->bash
 void init(void)
 {
 	int pid,i;
 
-	setup((void *) &drive_info);
-	(void) open("/dev/tty0",O_RDWR,0);
+	setup((void *) &drive_info);// 加载根文件系统
+	(void) open("/dev/tty0",O_RDWR,0); // 这里就是我们常见的标准输出 stdin  stdout stderr
 	(void) dup(0);
 	(void) dup(0);
 	printf("%d buffers = %d bytes buffer space\n\r",NR_BUFFERS,

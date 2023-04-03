@@ -84,7 +84,7 @@ static void add_request(struct blk_dev_struct * dev, struct request * req)
 	tmp->next=req;
 	sti();
 }
-
+// 利用到request的地方
 static void make_request(int major,int rw, struct buffer_head * bh)
 {
 	struct request * req;
