@@ -5,5 +5,6 @@
         "io.h": "c",
         "fcntl.h": "c",
         "fs.h": "c"
-    }
+    },
+    "docwriter.style": "Doxygen"
 }
