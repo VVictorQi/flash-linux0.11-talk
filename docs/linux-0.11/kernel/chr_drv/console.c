@@ -679,7 +679,7 @@ void con_init(void)// 控制显存开启
 	top	= 0;
 	bottom	= video_num_lines;
 
-	gotoxy(ORIG_X,ORIG_Y);
+	gotoxy(ORIG_X,ORIG_Y); //定位光标开启键盘中断
 	set_trap_gate(0x21,&keyboard_interrupt);
 	outb_p(inb_p(0x21)&0xfd,0x21);
 	a=inb_p(0x61);
